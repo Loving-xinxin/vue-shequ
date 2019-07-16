@@ -5,27 +5,28 @@ import Topic from './components/Topic.vue';
 import Users from './components/Users.vue';
 import PublicTopic from './components/PublicTopic.vue';
 import Message from './components/Message.vue';
+import { PUBLICURL } from './publicurl';
 vue.use(VueRouter);
 export default new VueRouter({
   routes: [
     {
-      path: '/',
+      path: PUBLICURL + '/',
       component: Home
     },
     {
-      path: '/topic/create',
+      path: PUBLICURL + '/topic/create',
       component: PublicTopic
     },
     {
-      path: '/topic/:id',
+      path: PUBLICURL + '/topic/:id',
       component: Topic
     },
     {
-      path: '/user/:loginname',
+      path: PUBLICURL + '/user/:loginname',
       component: Users
     },
     {
-      path: '/messages',
+      path: PUBLICURL + '/messages',
       component: Message
     }
   ],

@@ -1,38 +1,41 @@
 <template>
   <header>
     <div class="header-inner">
-      <router-link to="/" class="logo">
+      <router-link :to="$publicUrl + '/'" class="logo">
         <img src="https://www.vue-js.com/public/images/vue.png" alt />
         <h1>vue.js</h1>
       </router-link>
       <div class="shouye">
-        <router-link to="/">首页</router-link>
+        <router-link :to="$publicUrl + '/'">首页</router-link>
       </div>
       <div class="news">
-        <router-link to="/messages">
+        <router-link :to="$publicUrl + '/messages'">
           <div class="messages_count">{{messageNum!=0?messageNum:''}}</div>未读消息
         </router-link>
       </div>
       <div class="create">
-        <router-link to="/topic/create" v-if="userInfo && $route.path!='/topic/create'">发布</router-link>
+        <router-link
+          :to="$publicUrl + '/topic/create'"
+          v-if="userInfo && $route.path!=$publicUrl + '/topic/create'"
+        >发布</router-link>
       </div>
       <div class="publichao">
-        <router-link to="/">微信公众号</router-link>
+        <router-link :to="$publicUrl + '/'">微信公众号</router-link>
       </div>
       <div class="banben">
-        <router-link to="/">VUE 2.0</router-link>
+        <router-link :to="$publicUrl + '/'">VUE 2.0</router-link>
       </div>
       <div class="ziliao">
-        <router-link to="/">参考资料</router-link>
+        <router-link :to="$publicUrl + '/'">参考资料</router-link>
       </div>
       <div class="api">
-        <router-link to="/">API</router-link>
+        <router-link :to="$publicUrl + '/'">API</router-link>
       </div>
       <div class="about">
-        <router-link to="/">关于</router-link>
+        <router-link :to="$publicUrl + '/'">关于</router-link>
       </div>
       <div class="setting">
-        <router-link to="/">设置</router-link>
+        <router-link :to="$publicUrl + '/'">设置</router-link>
       </div>
       <div v-if="!userInfo" class="login">
         <input type="text" v-model="text" />
@@ -41,7 +44,7 @@
       <div v-else class="logout">
         <img :src="userInfo.avatar_url" alt class="avatar" />
         <span class="out" @click="logout">
-          <router-link to="/">退出</router-link>
+          <router-link :to="$publicUrl + '/'">退出</router-link>
         </span>
       </div>
     </div>

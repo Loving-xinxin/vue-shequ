@@ -2,19 +2,19 @@
   <div class="message">
     <div class="panel">
       <div class="header">
-        <router-link to="/" class="head-home">主页</router-link>
+        <router-link :to="$publicUrl + '/'" class="head-home">主页</router-link>
         <span>/&nbsp;&nbsp;新消息</span>
       </div>
       <div class="cell" v-for="hasNotMessage in hasNotMessages" :key="hasNotMessage.id">
         <div>
           <router-link
             class="title"
-            :to="`/user/${hasNotMessage.author.loginname}`"
+            :to="`${$publicUrl}/user/${hasNotMessage.author.loginname}`"
           >{{hasNotMessage.author.loginname}}</router-link>
           <span class="padding-lr">{{hasNotMessage.type==='at'?'在话题':'回复了你的话题'}}</span>
           <router-link
             class="title"
-            :to="`/topic/${hasNotMessage.topic.id}`"
+            :to="`${$publicUrl}/topic/${hasNotMessage.topic.id}`"
           >{{hasNotMessage.topic.title}}</router-link>
           <span class="padding-lr">{{hasNotMessage.type==='at'?'中@了你':''}}</span>
         </div>
@@ -29,10 +29,13 @@
       <div class="cell" v-for="hasMessage in hasMessages" :key="hasMessage.id">
         <router-link
           class="title"
-          :to="`/user/${hasMessage.author.loginname}`"
+          :to="`${$publicUrl}/user/${hasMessage.author.loginname}`"
         >{{hasMessage.author.loginname}}</router-link>
         <span class="padding-lr">{{hasMessage.type==='at'?'在话题':'回复了你的话题'}}</span>
-        <router-link class="title" :to="`/topics/${hasMessage.topic.id}`">{{hasMessage.topic.title}}</router-link>
+        <router-link
+          class="title"
+          :to="`${$publicUrl}/topics/${hasMessage.topic.id}`"
+        >{{hasMessage.topic.title}}</router-link>
         <span class="padding-lr">{{hasMessage.type==='at'?'中@了你':''}}</span>
         <div class="time">
           <img src="https://www.vue-js.com/public/images/checkmark_icon&16.png" alt />
