@@ -122,7 +122,7 @@ export default {
     },
     changePage(num) {
       const tab = this.$route.query.tab || "all";
-      this.$router.push(`/?tab=${tab}&page=${num}`);
+      this.$router.push(`${this.$publicUrl}/?tab=${tab}&page=${num}`);
     }
   }
 };

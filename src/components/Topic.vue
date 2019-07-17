@@ -51,7 +51,16 @@
       </ul>
       <div class="comment-form">
         <p>添加回复</p>
-        <textarea v-model="text"></textarea>
+        <!-- <textarea v-model="text"></textarea> -->
+        <quill-editor
+          class="content-text"
+          v-model="content"
+          ref="myQuillEditor"
+          :options="editorOption"
+          @blur="onEditorBlur($event)"
+          @focus="onEditorFocus($event)"
+          @ready="onEditorReady($event)"
+        ></quill-editor>
         <button @click="addComment" class="reply">回复</button>
       </div>
     </div>
@@ -61,13 +70,22 @@
 <script>
 import axios from "axios";
 import moment from "moment";
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
+import "quill/dist/quill.bubble.css";
+import { quillEditor } from "vue-quill-editor";
 export default {
   name: "topic",
+  components: {
+    quillEditor
+  },
   data() {
     return {
       topic: null,
       is_collect: false,
-      text: ""
+      text: "",
+      content: "",
+      editorOption: {}
     };
   },
   computed: {
@@ -162,6 +180,19 @@ export default {
     addreply(loginname) {
       this.text = `@${loginname}`;
       document.querySelector("textarea").focus();
+    },
+    onEditorBlur(quill) {
+      console.log("editor blur!", quill);
+    },
+    onEditorFocus(quill) {
+      console.log("editor focus!", quill);
+    },
+    onEditorReady(quill) {
+      console.log("editor ready!", quill);
+    },
+    onEditorChange({ quill, html, text }) {
+      console.log("editor change!", quill, html, text);
+      this.content = html;
     }
   }
 };
@@ -261,6 +292,13 @@ export default {
   line-height: 2em;
   margin: 1em 0;
 }
+
+.comment-form .content-text {
+  height: 500px;
+  margin-bottom: 100px;
+  resize: none;
+}
+
 .topic_content img {
   height: auto;
   max-width: 100%;
@@ -282,6 +320,10 @@ export default {
   margin: 0;
   padding: 10px;
   font-size: 14px;
+}
+.comment-form p {
+  background-color: #fff;
+  margin-top: 10px;
 }
 .comment-form .reply {
   display: inline-block;
@@ -331,4 +373,10 @@ export default {
 .comment ul li div > .content {
   font-size: 14px;
 }
+.ql-editor {
+  background-color: #fff;
+}
+/* .ql-toolbar.ql-snow {
+  width: 80%;
+} */
 </style>

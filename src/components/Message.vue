@@ -34,7 +34,7 @@
         <span class="padding-lr">{{hasMessage.type==='at'?'在话题':'回复了你的话题'}}</span>
         <router-link
           class="title"
-          :to="`${$publicUrl}/topics/${hasMessage.topic.id}`"
+          :to="`${$publicUrl}/topic/${hasMessage.topic.id}`"
         >{{hasMessage.topic.title}}</router-link>
         <span class="padding-lr">{{hasMessage.type==='at'?'中@了你':''}}</span>
         <div class="time">

@@ -10,7 +10,7 @@
       </div>
       <div class="news">
         <router-link :to="$publicUrl + '/messages'">
-          <div class="messages_count">{{messageNum!=0?messageNum:''}}</div>未读消息
+          <div :class="messageNum ? 'messages_count' : ''">{{messageNum!=0?messageNum:''}}</div>未读消息
         </router-link>
       </div>
       <div class="create">
