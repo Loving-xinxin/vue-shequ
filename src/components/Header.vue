@@ -3,7 +3,7 @@
     <div class="header-inner">
       <router-link :to="$publicUrl + '/'" class="logo">
         <img src="https://www.vue-js.com/public/images/vue.png" alt />
-        <h1>vue.js</h1>
+        <h1>Vue交流社区</h1>
       </router-link>
       <div class="shouye">
         <router-link :to="$publicUrl + '/'">首页</router-link>
